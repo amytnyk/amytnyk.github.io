@@ -22,11 +22,12 @@ a {
   font-size: 20px;
   text-align: center;
   margin: 5px;
-  padding: 30px;
+  padding: 20px;
   border: solid 2px #666;
   background-color: #EEE;
-  border-radius: 20px;
+  border-radius: 15px;
 }
+
 
 .problem.solved{
   background-color: #8F8;
