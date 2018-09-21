@@ -22,9 +22,10 @@ a {
   font-size: 20px;
   text-align: center;
   margin: 5px;
-  padding: 5px;
+  padding: 30px;
   border: solid 2px #666;
   background-color: #EEE;
+  border-radius: 20px;
 }
 
 .problem.solved{
