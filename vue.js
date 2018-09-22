@@ -28,6 +28,7 @@ var app = new Vue({
                     return a.average - b.average;
                 });
                 this.easier = task.filter(function (problem) {
+					app.get_solved();
                     return problem.average < this.rating && this.solved[problem['contestId']][problem['index']] === "solved";
                 }.bind(this)).sort(function (a, b) {
                     return b.average - a.average;
@@ -49,13 +50,7 @@ var app = new Vue({
                         solved[problem['contestId']] = {};
                     solved[problem['contestId']][problem['index']] =
                         el['verdict'] === 'OK' || solved[problem['contestId']][problem['index']] === "solved" ? "solved" : "tried";
-						
-						
-						
                 });
-				this.solved_tasks = task['result'].filter(function (problem) {
-						return true;
-						}.bind(this));
                 this.solved = solved;
             }.bind(this));
         },
