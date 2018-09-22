@@ -53,9 +53,10 @@ var app = new Vue({
 						
 						
                 });
-				this.solved_tasks = task['result'].filter(function (problem) {
-							return problem.average < this.rating;
-						}.bind(this));
+				this.solved_tasks = task['result'];
+				//this.solved_tasks = task['result'].filter(function (problem) {
+				//			return problem.average < this.rating;
+				//		}.bind(this));
                 this.solved = solved;
             }.bind(this));
         },
