@@ -5,6 +5,7 @@ var app = new Vue({
         harder: [],
         easier: [],
         solved: [],
+		solved_tasks: [],
         tags: [],
         chosen_tags: [],
         selected_tag: "",
@@ -48,7 +49,13 @@ var app = new Vue({
                         solved[problem['contestId']] = {};
                     solved[problem['contestId']][problem['index']] =
                         el['verdict'] === 'OK' || solved[problem['contestId']][problem['index']] === "solved" ? "solved" : "tried";
+						
+						
+						
                 });
+				this.solved_tasks = task.task['result'](function (problem) {
+							return problem.average < this.rating;
+						}.bind(this));
                 this.solved = solved;
             }.bind(this));
         },
