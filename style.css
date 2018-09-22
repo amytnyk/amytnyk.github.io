@@ -15,7 +15,7 @@ a {
 
 .problem-container{
   width: 33%;
-  display: inline-block;
+  float: left;
 }
 
 .problem{
@@ -47,7 +47,7 @@ a {
 }
 
 .tag{
-  width: 33%;
+  width: 25%;
   float: left;
   margin: 0;
   font-size: 20px;
