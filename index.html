@@ -33,6 +33,13 @@
             <span> ({{ el.average }})</span>
           </div>
         </div>
+		<div class="problem-container">
+          <h1 class="centred">111</h1>
+          <div class="problem" v-for="el in easier" v-if="tags_compare(el.tags)" :class="{ solved: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'solved', tried: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'tried' }">
+            <a :href="'http://codeforces.com/problemset/problem/' + el.contest + '/' + el.index" target="_blank">{{ el.contest }}{{ el.index }}: {{ el.name }}</a>
+            <span> ({{ el.average }})</span>
+          </div>
+        </div>
       </div>
 
       
