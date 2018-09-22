@@ -28,7 +28,7 @@ var app = new Vue({
                     return a.average - b.average;
                 });
                 this.easier = task.filter(function (problem) {
-                    return problem.average < this.rating && solved[problem['contestId']][problem['index']] === "solved";
+                    return problem.average < this.rating && this.solved[problem['contestId']][problem['index']] === "solved";
                 }.bind(this)).sort(function (a, b) {
                     return b.average - a.average;
                 });
