@@ -16,6 +16,7 @@ a {
 .problem-container{
   width: 33%;
   float: left;
+  display: inline-block;
 }
 
 .problem{
