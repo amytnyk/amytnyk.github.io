@@ -13,6 +13,10 @@
         <h1>{{ rating }}</h1>
       </div>
       <hr>
+	  <div class="right-container">
+        <h1 class="centred"> Tags </h1>
+        <h1 v-for="tag in tags" :class="{ noselect: true, centred: true, tag: true, chosen: chosen_tags.includes(tag) }" @click="change_tag_state(tag)"> {{ tag }} </h1>
+      </div>
       <div class="left-container">
        <div class="problem-container">
           <h1 class="centred">Harder</h1>
@@ -28,11 +32,6 @@
             <span> ({{ el.average }})</span>
           </div>
         </div>
-      </div>
-
-      <div class="right-container">
-        <h1 class="centred"> Tags </h1>
-        <h1 v-for="tag in tags" :class="{ noselect: true, centred: true, tag: true, chosen: chosen_tags.includes(tag) }" @click="change_tag_state(tag)"> {{ tag }} </h1>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
