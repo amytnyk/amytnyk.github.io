@@ -29,9 +29,14 @@ a {
   border-radius: 15px;
 }
 
+.problem_d{
+	display: none;
+}
+
 
 .problem.solved{
   background-color: #8F8;
+  display: block;
 }
 
 .problem.tried_d{
