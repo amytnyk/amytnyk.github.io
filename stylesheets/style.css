@@ -34,6 +34,11 @@ a {
   background-color: #8F8;
 }
 
+.problem.tried_d{
+  background-color: #f7c362;
+  visibility: none;
+}
+
 .problem.tried{
   background-color: #f7c362;
 }
