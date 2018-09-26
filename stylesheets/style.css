@@ -32,7 +32,7 @@ a {
 
 .problem:hover {
   transition: 0.5s;
-  color: #efe5bf;
+  background-color: #efe5bf;
 }
 
 .problem_d{
