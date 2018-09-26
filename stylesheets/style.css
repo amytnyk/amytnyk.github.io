@@ -49,6 +49,10 @@ a {
   display: block;
 }
 
+.problem.solved:hover {
+  background-color #8fa;
+}
+
 .problem.tried_d{
   background-color: #f7c362;
   display: none;
