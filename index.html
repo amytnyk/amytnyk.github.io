@@ -28,18 +28,18 @@
         </div>
         <div class="problem-container">
           <h1 class="centred">Easier</h1>
-          <div class="problem" v-for="el in easier" v-if="tags_compare(el.tags)" :class="{ solved_hidden: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'solved', tried: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'tried' }">
+          <div class="problem" v-on:click="go(el.contest, el.index)" v-for="el in easier" v-if="tags_compare(el.tags)" :class="{ solved_hidden: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'solved', tried: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'tried' }">
             <a :href="'http://codeforces.com/problemset/problem/' + el.contest + '/' + el.index" target="_blank">{{ el.contest }}{{ el.index }}: {{ el.name }}</a>
             <span> ({{ el.average }})</span>
           </div>
         </div>
 		<div class="problem-container">
           <h1 class="centred">Solved</h1>
-          <div class="problem problem_d" v-for="el in easier" v-if="tags_compare(el.tags)" :class="{ solved: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'solved', tried_d: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'tried' }">
+          <div class="problem problem_d" v-on:click="go(el.contest, el.index)" v-for="el in easier" v-if="tags_compare(el.tags)" :class="{ solved: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'solved', tried_d: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'tried' }">
             <a :href="'http://codeforces.com/problemset/problem/' + el.contest + '/' + el.index" target="_blank">{{ el.contest }}{{ el.index }}: {{ el.name }}</a>
             <span> ({{ el.average }})</span>
           </div>
-		  <div class="problem problem_d" v-for="el in harder" v-if="tags_compare(el.tags)" :class="{ solved: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'solved', tried_d: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'tried' }">
+		  <div class="problem problem_d" v-on:click="go(el.contest, el.index)" v-for="el in harder" v-if="tags_compare(el.tags)" :class="{ solved: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'solved', tried_d: solved[el.contest] !== undefined &amp;&amp; solved[el.contest][el.index] === 'tried' }">
             <a :href="'http://codeforces.com/problemset/problem/' + el.contest + '/' + el.index" target="_blank">{{ el.contest }}{{ el.index }}: {{ el.name }}</a>
             <span> ({{ el.average }})</span>
           </div>

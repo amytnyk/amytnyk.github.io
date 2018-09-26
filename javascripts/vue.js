@@ -34,9 +34,7 @@ var app = new Vue({
             }.bind(this));
         },
 		go: function(contest, index) {
-			alert(contest);
-			alert(index);
-			document.location = 'http://codeforces.com/problemset/problem/' + contest + '/' + index;
+			window.open('http://codeforces.com/problemset/problem/' + contest + '/' + index, '_blank');
 		},
         get_rating: function (callback) {
             $.getJSON('https://codeforces.com/api/user.info?handles=' + this.handle, function(task){
