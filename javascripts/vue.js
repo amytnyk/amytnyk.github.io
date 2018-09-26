@@ -1,8 +1,3 @@
-$(document).delegate(".problem", "click", function() {
-   alert($(this).find("a").attr(":href"));
-   window.location = $(this).find("a").attr(":href");
-});
-
 var app = new Vue({
     el: '#app',
     data: {
@@ -39,6 +34,8 @@ var app = new Vue({
             }.bind(this));
         },
 		go: function(contest, index) {
+			alert(contest);
+			alert(index);
 			document.location = 'http://codeforces.com/problemset/problem/' + contest + '/' + index;
 		},
         get_rating: function (callback) {
