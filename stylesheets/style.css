@@ -27,6 +27,12 @@ a {
   border: solid 2px #666;
   background-color: #EEE;
   border-radius: 15px;
+  cursor: pointer;
+}
+
+.problem:hover {
+  transition: 0.5s;
+  color: #efe5bf;
 }
 
 .problem_d{
