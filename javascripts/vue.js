@@ -40,7 +40,7 @@ var app = new Vue({
         },
 		go: function(contest, index) {
 			document.location = 'http://codeforces.com/problemset/problem/' + contest + '/' + index;
-		}
+		},
         get_rating: function (callback) {
             $.getJSON('https://codeforces.com/api/user.info?handles=' + this.handle, function(task){
                 this.rating = task['result'][0]['rating'] || 1500;
