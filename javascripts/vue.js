@@ -5,6 +5,8 @@ var app = new Vue({
         harder: [],
         easier: [],
         solved: [],
+		easier_d: [],
+        solved_d: [],
         tags: [],
         chosen_tags: [],
         selected_tag: "",
@@ -26,7 +28,17 @@ var app = new Vue({
                 }.bind(this)).sort(function (a, b) {
                     return a.average - b.average;
                 });
+				this.harder_d = task.filter(function (problem) {
+                    return problem.average >= this.rating;
+                }.bind(this)).sort(function (a, b) {
+                    return b.average - a.average;
+                });
                 this.easier = task.filter(function (problem) {
+                    return problem.average < this.rating;
+                }.bind(this)).sort(function (a, b) {
+                    return b.average - a.average;
+                });
+				this.easier_d = task.filter(function (problem) {
                     return problem.average < this.rating;
                 }.bind(this)).sort(function (a, b) {
                     return b.average - a.average;
