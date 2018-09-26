@@ -63,8 +63,9 @@ a {
   background-color: #f7c362;
 }
 
-.problem.tried:hover{
-  background-color: #fac362;
+.problem.tried:hover {
+  transition: 0.5s;
+  background-color: #dc6;
 }
 
 .left-container{
