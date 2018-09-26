@@ -1,3 +1,7 @@
+$(document).delegate(".problem", "click", function() {
+   window.location = $(this).find("a").attr(":href");
+});
+
 var app = new Vue({
     el: '#app',
     data: {
