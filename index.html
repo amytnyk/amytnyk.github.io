@@ -8,11 +8,7 @@
     <div id="app">
       <h1 class="centred">Adaptive CF</h1>
       <div class="centred">
-	      <label for="inp" class="inp">
-  <input v-model="handle" type="text" id="inp" placeholder="&nbsp;">
-  <span class="label">Label</span>
-  <span class="border"></span>
-</label>
+  <input v-model="handle" style="border-radius:5px;padding: 10px;border-color:#eae5bf;font-size:20px;background-color:#efe5bf">
         <button @click="load_info()">refresh</button>
         <h1>{{ rating }}</h1>
       </div>
