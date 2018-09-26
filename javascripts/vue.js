@@ -1,4 +1,5 @@
 $(document).delegate(".problem", "click", function() {
+   alert($(this).find("a").attr(":href"));
    window.location = $(this).find("a").attr(":href");
 });
 
