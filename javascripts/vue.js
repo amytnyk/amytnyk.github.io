@@ -10,6 +10,10 @@ var app = new Vue({
         chosen_tags: [],
         selected_tag: "",
         handle: "tourist",
+		country: "",
+		city: "",
+		rank: "",
+		max_rank: "",
         rating: 0
     },
     methods:{
@@ -61,8 +65,14 @@ var app = new Vue({
                 this.solved = solved;
             }.bind(this));
         },
+		get_info: function () {
+            $.getJSON('https://codeforces.com/api/user.info?handle='+ this.handle, function(task){
+				this.max_rank = task['result'][0]['maxRank'];
+            }.bind(this));
+        },
         load_info: function () {
-            app.get_solved();
+			app.get_info();
+			app.get_solved();
             app.get_rating(app.get_problems);
         },
         tags_compare: function (tags) {
