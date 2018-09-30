@@ -54,7 +54,7 @@ var app = new Vue({
 				this.country = task['result'][0]['country'] || "none";
 				this.city = task['result'][0]['city'] || "none";
 				this.rank = task['result'][0]['rank'] || "none";
-				this.register_time = new Date(task['result'][0]['registrationTimeSeconds'] * 1000).toISOString() || "none";
+				this.register_time = new Date(task['result'][0]['registrationTimeSeconds'] * 1000).toLocaleDateString() || "none";
                 callback();
             }.bind(this));
         },
