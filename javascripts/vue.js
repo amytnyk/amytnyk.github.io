@@ -5,7 +5,7 @@ var app = new Vue({
         harder: [],
         easier: [],
         solved: [],
-		easier_d: [],
+		harder_d: [],
         tags: [],
         chosen_tags: [],
         selected_tag: "",
