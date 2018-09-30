@@ -10,10 +10,11 @@ var app = new Vue({
         chosen_tags: [],
         selected_tag: "",
         handle: "tourist",
-		country: "none",
-		city: "none",
-		rank: "none",
-		max_rank: "none",
+		country: "a",
+		city: "a",
+		rank: "a",
+		max_rank: "a",
+		register_time: "2018",
         rating: 0
     },
     methods:{
