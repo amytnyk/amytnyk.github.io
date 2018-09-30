@@ -72,7 +72,7 @@ var app = new Vue({
             }.bind(this));
         },
         load_info: function () {
-			localStorage.setItem("handle", handle);
+			localStorage.setItem("handle", this.handle);
 			app.get_solved();
             app.get_rating(app.get_problems);
         },
