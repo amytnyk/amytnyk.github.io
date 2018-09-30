@@ -9,7 +9,7 @@ var app = new Vue({
         tags: [],
         chosen_tags: [],
         selected_tag: "",
-        handle: "tourist",
+        handle: localStorage.getItem("handle"),
 		country: "a",
 		city: "a",
 		rank: "a",
@@ -72,6 +72,7 @@ var app = new Vue({
             }.bind(this));
         },
         load_info: function () {
+			localStorage.setItem("handle", handle);
 			app.get_solved();
             app.get_rating(app.get_problems);
         },
