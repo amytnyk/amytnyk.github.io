@@ -50,6 +50,11 @@ var app = new Vue({
         get_rating: function (callback) {
             $.getJSON('https://codeforces.com/api/user.info?handles=' + this.handle, function(task){
                 this.rating = task['result'][0]['rating'] || 1500;
+				this.max_rank = task['result'][0]['MaxRank'] || "none";
+				this.country = task['result'][0]['country'] || "none";
+				this.city = task['result'][0]['city'] || "none";
+				this.rank = task['result'][0]['rank'] || "none";
+				this.register_time = task['result'][0]['registrationTimeSeconds'] || "none";
                 callback();
             }.bind(this));
         },
@@ -66,13 +71,7 @@ var app = new Vue({
                 this.solved = solved;
             }.bind(this));
         },
-		get_info: function () {
-            $.getJSON('https://codeforces.com/api/user.info?handle='+ this.handle, function(task){
-				this.max_rank = task['result'][0]['maxRank'];
-            }.bind(this));
-        },
         load_info: function () {
-			app.get_info();
 			app.get_solved();
             app.get_rating(app.get_problems);
         },
