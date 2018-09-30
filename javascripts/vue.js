@@ -50,11 +50,11 @@ var app = new Vue({
         get_rating: function (callback) {
             $.getJSON('https://codeforces.com/api/user.info?handles=' + this.handle, function(task){
                 this.rating = task['result'][0]['rating'] || 1500;
-				this.max_rank = task['result'][0]['MaxRank'] || "none";
+				this.max_rank = task['result'][0]['maxRank'] || "none";
 				this.country = task['result'][0]['country'] || "none";
 				this.city = task['result'][0]['city'] || "none";
 				this.rank = task['result'][0]['rank'] || "none";
-				this.register_time = task['result'][0]['registrationTimeSeconds'] || "none";
+				this.register_time = new Date(task['result'][0]['registrationTimeSeconds'] * 1000).toISOString() || "none";
                 callback();
             }.bind(this));
         },
