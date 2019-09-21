@@ -14,7 +14,7 @@ var app = new Vue({
 		rank: app.getItemFromStorage("rank", ""),
 		max_rank: app.getItemFromStorage("max_rank", ""),
 		register_time: app.getItemFromStorage("register_time", ""),
-        rating: app.getItemFromStorage("rating", ""),
+        rating: app.getItemFromStorage("rating", "")
     },
     methods:{
 		getItemFromStorage: function(name, default) {
