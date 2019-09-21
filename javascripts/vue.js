@@ -1,3 +1,8 @@
+function getItemFromStorage(name, default) {
+	let item = localStorage.getItem("handle");
+	return (item == null) ? default : item;
+}
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -8,13 +13,13 @@ var app = new Vue({
         tags: [],
         chosen_tags: [],
         selected_tag: "",
-        handle: localStorage.getItem("handle"),
-		country: "a",
-		city: "a",
-		rank: "a",
-		max_rank: "a",
-		register_time: "2018",
-        rating: 0
+        handle: getItemFromStorage("handle", ""),
+		country: getItemFromStorage("country", ""),
+		city: getItemFromStorage("city", ""),
+		rank: getItemFromStorage("rank", ""),
+		max_rank: getItemFromStorage("max_rank", ""),
+		register_time: getItemFromStorage("register_time", ""),
+        rating: getItemFromStorage("rating", ""),
     },
     methods:{
         get_problems: function () {
@@ -71,6 +76,12 @@ var app = new Vue({
             }.bind(this));
         },
         load_info: function () {
+			localStorage.setItem("city", this.handle);
+			localStorage.setItem("country", this.country);
+			localStorage.setItem("rank", this.rank);
+			localStorage.setItem("max_rank", this.max_rank);
+			localStorage.setItem("rating", this.rating);
+			localStorage.setItem("register_time", this.register_time);
 			localStorage.setItem("handle", this.handle);
 			app.get_solved();
             app.get_rating(app.get_problems);
