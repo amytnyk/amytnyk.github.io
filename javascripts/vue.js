@@ -1,8 +1,3 @@
-function getItemFromStorage(name, default) {
-	let item = localStorage.getItem("handle");
-	return (item == null) ? default : item;
-}
-
 var app = new Vue({
     el: '#app',
     data: {
@@ -13,15 +8,19 @@ var app = new Vue({
         tags: [],
         chosen_tags: [],
         selected_tag: "",
-        handle: getItemFromStorage("handle", ""),
-		country: getItemFromStorage("country", ""),
-		city: getItemFromStorage("city", ""),
-		rank: getItemFromStorage("rank", ""),
-		max_rank: getItemFromStorage("max_rank", ""),
-		register_time: getItemFromStorage("register_time", ""),
-        rating: getItemFromStorage("rating", ""),
+        handle: app.getItemFromStorage("handle", ""),
+		country: app.getItemFromStorage("country", ""),
+		city: app.getItemFromStorage("city", ""),
+		rank: app.getItemFromStorage("rank", ""),
+		max_rank: app.getItemFromStorage("max_rank", ""),
+		register_time: app.getItemFromStorage("register_time", ""),
+        rating: app.getItemFromStorage("rating", ""),
     },
     methods:{
+		getItemFromStorage: function(name, default) {
+			let item = localStorage.getItem("handle");
+			return (item == null) ? default : item;
+		},
         get_problems: function () {
             $.getJSON('data-ru.json', function(task){
                 task.forEach(function (el) {
