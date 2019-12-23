@@ -1,5 +1,69 @@
 #canvas {
     position: absolute;
-    margin-left: 20%;
-    margin-top: 10%;
+    margin-left: 25%;
+    position: absolute;
+    margin-top: -15vh;
 }
+
+@media screen and (max-width: 800px) {
+    #canvas {
+        margin-left: 0;
+        margin-top: 5vh;
+    }
+}
+
+body {
+    margin: 0;
+    user-select: none;
+}
+
+button {
+    padding: 1em;
+    border: black 3px solid;
+    background-color: transparent;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+button:hover {
+    transition-duration: 0.5s;
+    background-color: black;
+    color: white;
+}
+
+button:focus {outline:0;}
+
+.menu_controls {
+    margin-left: 20vw;
+    display: flex;
+}
+
+@media screen and (max-width:600px) {
+    .menu_controls {
+        flex-direction: column;
+        margin-left: 2vw;
+    }
+}
+
+.controls {
+    margin-top: 2vw;
+    margin-left: 2vw;
+}
+
+.field_type_selectors {
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+}
+
+.field_type_selectors > button[checked] {
+    transition-duration: 0.5s;
+    padding-left: 3em;
+    border-left: black 10px solid;
+}
+
+#file {
+    display: none;
+}
+

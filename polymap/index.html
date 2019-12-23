@@ -1,15 +1,25 @@
 <html>
 <head>
-    <title></title>
+    <title>Polytopia Map</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
 </head>
 <body>
-    <div class="start_menu">
-        <button class="load_from_file"></button>
-        <button class="create_new"></button>
+    <div class="controls">
+        <input type="file" id="file" />
+        <div class="menu_controls">
+            <button class="load_from_file">Load from file</button>
+            <button class="save_to_file">Save to file</button>
+            <button class="save_as_image">Save as image</button>
+            <button class="clear_map">Clear map</button>
+        </div>
+        <div class="field_type_selectors">
+            <button class="select_ground">Ground</button>
+            <button class="select_water">Water</button>
+            <button class="select_unknown">Unknown</button>
+        </div>
     </div>
-    <canvas id="canvas" width="1000" height="600">
+    <canvas id="canvas" width="600" height="600">
     </canvas>
 </body>
 </html>
