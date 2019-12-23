@@ -1,7 +1,6 @@
 #canvas {
     position: absolute;
     margin-left: 25%;
-    position: absolute;
     top: 10vh;
 }
 
@@ -9,6 +8,7 @@
     #canvas {
         margin-left: 0;
         margin-top: 5vh;
+        position: initial;
     }
 }
 
