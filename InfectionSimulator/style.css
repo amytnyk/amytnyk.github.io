@@ -4,6 +4,7 @@ body {
   font-size: 20px;
   font-family: "Segoe UI";
 }
+
 canvas {
   margin: 0;
   padding: 0;
@@ -15,6 +16,7 @@ canvas {
   position: absolute;
   right: 0;
   height: 100%;
+  background-color: #272727;
 }
 
 #restart {
@@ -27,8 +29,41 @@ canvas {
   color: #ffffff;
 }
 
-#controller .label {
+.label, .info_span {
+  color: white;
+}
+
+.label, .info_label {
   margin-left: 20px;
+}
+
+.info_label, .info_count_label {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.confirmed_cases_label, #confirmed_cases_count_label {
+  color: red;
+}
+
+.deaths_label, #deaths_count_label {
+  color: gray;
+}
+
+.recovered_label, #recovered_count_label {
+  color: yellow;
+}
+
+.incubation_period_label, #incubation_count_label {
+  color: #8484ff;
+}
+
+.susceptible_label, #susceptible_count_label {
+  color: green;
+}
+
+.active_label, #active_count_label {
+  color: #964d09;
 }
 
 .slider {
