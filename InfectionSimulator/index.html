@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Infection simulator</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="environment" width="300" height="300"></canvas>
+    <div id="controller">
+      <span class="label">People count: </span><span id="people_count_span">100</span><br/><input type="range" min="10" max="500" value="100" class="slider" id="people_count_slider" /><br/>
+      <span class="label">People size: </span><span id="people_size_span">100</span><br/><input type="range" min="2" max="15" value="5" class="slider" id="people_size_slider" /><br/>
+      <span class="label">Speed: </span><span id="speed_span">100</span><br/><input type="range" min="0.2" max="5" step="0.1" value="1" class="slider" id="speed_slider" /><br/>
+      <button id="restart">Restart simulation</button>
+    </div>
+  </body>
+</html>
