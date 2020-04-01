@@ -51,6 +51,10 @@ let debug_collision_check = true;
 
 document.addEventListener("DOMContentLoaded", init);
 
+function distanceBetweenPoints(p1, p2) {
+  return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+}
+
 function resizeCanvas() {
     size = { width: window.innerWidth * 3 / 4 + 1, height: window.innerHeight };
     canvas.width = size.width;
@@ -65,7 +69,7 @@ function generatePeople() {
     let direction = Math.random() * Math.PI * 2;
     let speed = speed_low + (speed_high - speed_low) * Math.random();
 
-    people.push({ x: x, y: y, direction: direction, speed: speed, state: "susceptible" });
+    people.push({ x: x, y: y, direction: direction, speed: speed, state: "susceptible", just_bounced: false });
   }
 
   let random_index = Math.floor(Math.random() * people_count);
@@ -125,7 +129,7 @@ function bindInput() {
   infection_period_span.innerHTML = infection_period_slider.value;
   infection_period_slider.oninput = function() {
     infection_period_span.innerHTML = this.value;
-    max_infection_timer = parseInt(this.value) * 1000;
+    max_infection_time = parseInt(this.value) * 1000;
   };
 
   restart_button = document.getElementById("restart");
@@ -155,9 +159,65 @@ function restartSimulating() {
   startSimulating();
 }
 
+let block_lines = [];
+
+let drawing_line = false;
+let temp_point = null;
+let current_mouse_pos = null;
+
+function distanceBetweenPointAndSegment(point, segment) {
+  let d1 = distanceBetweenPoints(point, segment.first);
+  let d2 = distanceBetweenPoints(point, segment.second);
+  let d3 = distanceBetweenPoints(segment.second, segment.first);
+  let p = (d1 + d2 + d3) / 2;
+  let S = Math.sqrt(p * (p - d1) * (p - d2) * (p - d3));
+  let height = 2 * S / d3;
+  let is_obtuse = false;
+  is_obtuse = is_obtuse || (d2 * d2 + d3 * d3 < d1 * d1);
+  is_obtuse = is_obtuse || (d1 * d1 + d3 * d3 < d2 * d2);
+  if (is_obtuse)
+    return Math.min(distanceBetweenPoints(point, segment.first), distanceBetweenPoints(point, segment.second));
+  else {
+    return height;
+  }
+}
+
+function mouseMove(e) {
+  current_mouse_pos = { x: e.pageX, y: e.pageY }
+}
+
+function mouseDblclick(e) {
+  current_mouse_pos = { x: e.pageX, y: e.pageY };
+
+  for (let i = 0;i < block_lines.length;i++) {
+    if (distanceBetweenPointAndSegment(current_mouse_pos, block_lines[i]) < 10) {
+      block_lines.splice(i);
+      break;
+    }
+  }
+}
+
+function mouseClick(e) {
+  current_mouse_pos = { x: e.pageX, y: e.pageY };
+
+  if (temp_point != null) {
+    if (distanceBetweenPoints(temp_point, current_mouse_pos) < 10) {
+      temp_point = null;
+      return;
+    }
+    block_lines.push({ first: temp_point, second: current_mouse_pos});
+  }
+
+  temp_point = current_mouse_pos;
+}
+
 function init() {
   canvas = document.getElementById("environment");
   ctx = canvas.getContext("2d");
+
+  canvas.addEventListener("click", mouseClick);
+  canvas.addEventListener("mousemove", mouseMove);
+  canvas.addEventListener("dblclick", mouseDblclick);
 
   bindInput();
   // window.addEventListener('resize', resizeCanvas, false);
@@ -190,6 +250,26 @@ function draw() {
     ctx.arc(Math.floor(human.x), Math.floor(human.y), people_draw_radius, 0, 2 * Math.PI, false);
     ctx.fill();
   });
+
+  ctx.strokeStyle = "white";
+
+  block_lines.forEach((line) => {
+    ctx.beginPath();
+    ctx.lineWidth = 5;
+    ctx.arc(line.first.x, line.first.y, 2, 0, 2 * Math.PI, false);
+    ctx.moveTo(line.first.x, line.first.y);
+    ctx.lineTo(line.second.x, line.second.y);
+    //ctx.arc(line.second.x, line.second.y, 2, 0, 2 * Math.PI, false);
+    ctx.stroke();
+  });
+
+  if (temp_point != null) {
+    ctx.beginPath();
+    ctx.lineWidth = 5;
+    ctx.moveTo(temp_point.x, temp_point.y);
+    ctx.lineTo(current_mouse_pos.x, current_mouse_pos.y);
+    ctx.stroke();
+  }
 }
 
 function update() {
@@ -210,9 +290,9 @@ function moveAndCollide() {
     current_time += time_delta * simulation_speed;
   last_time_updated = new Date().getTime();
 
-  let width_chunks = Math.min(50, size.width / people_draw_radius);
+  let width_chunks = Math.min(50, Math.ceil(size.width / people_draw_radius));
   let width_chunk_size = size.width / width_chunks;
-  let height_chunks = Math.min(50, size.height / people_draw_radius);
+  let height_chunks = Math.min(50, Math.ceil(size.height / people_draw_radius));
   let height_chunk_size = size.height / height_chunks;
 
   let chunks = new Array(height_chunks * width_chunks).fill(new Array());
@@ -226,7 +306,22 @@ function moveAndCollide() {
     people[i].x += people[i].speed * Math.cos(people[i].direction) * time_delta * simulation_speed / 100;
     people[i].y += people[i].speed * Math.sin(people[i].direction) * time_delta * simulation_speed / 100;
 
-    if (people[i].x + people_draw_radius > size.width || people[i].x - people_draw_radius < 0) {
+    block_lines.forEach((line) => {
+      if (distanceBetweenPointAndSegment(people[i], line) <= people_draw_radius) {
+        let slope_angle = Math.atan((line.second.y - line.first.y) / (line.second.x - line.first.x));
+        let new_angle = 2 * slope_angle - people[i].direction;
+        people[i].direction = new_angle;
+        people[i].x = last_x;
+        people[i].y = last_y;
+      }
+    });
+
+    if (people[i].x == last_x && people[i].y == last_y) {
+      people[i].x += people[i].speed * Math.cos(people[i].direction) * time_delta * simulation_speed / 100;
+      people[i].y += people[i].speed * Math.sin(people[i].direction) * time_delta * simulation_speed / 100;
+    }
+
+     if (people[i].x + people_draw_radius > size.width || people[i].x - people_draw_radius < 0) {
       people[i].direction = Math.PI - people[i].direction;
       people[i].x = last_x;
       people[i].y = last_y;
