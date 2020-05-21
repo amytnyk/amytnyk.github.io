@@ -51,6 +51,7 @@ body {
     width: 20%;
     font-size: 2rem;
     cursor: pointer;
+    user-select: none;
 }
 
 .buttons button:hover {
