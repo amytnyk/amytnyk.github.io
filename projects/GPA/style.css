@@ -98,3 +98,7 @@ body {
     transition-duration: 0.5s;
     cursor: pointer;
 }
+
+.disable-dbl-tap-zoom {
+    touch-action: manipulation;
+}
