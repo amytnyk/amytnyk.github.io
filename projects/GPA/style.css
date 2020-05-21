@@ -101,6 +101,6 @@ body {
     cursor: pointer;
 }
 
-.disable-dbl-tap-zoom {
+body {
     touch-action: manipulation;
 }
