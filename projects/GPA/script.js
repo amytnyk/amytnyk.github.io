@@ -33,8 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         initNumber(i, "grade_" + i);
     }
     document.getElementById("delete").addEventListener("click", () => {
-        grades.pop();
-        update();
+        if (grades.length != 0) {
+            grades.pop();
+            update();
+        }
     });
     document.getElementById("clear").addEventListener("click", () => {
         grades = [];
