@@ -83,6 +83,7 @@ body {
   height: 55%;
   float: bottom;
   font-size: 5rem;
+  user-select: none;
 }
 
 .grade_buttons div {
