@@ -153,8 +153,6 @@ function startSimulating() {
 function restartSimulating() {
   clearInterval(update);
   debug_interval_cleared++;
-  console.log(debug_interval_started);
-  console.log(debug_interval_cleared);
 
   startSimulating();
 }
@@ -307,7 +305,7 @@ function moveAndCollide() {
     people[i].y += people[i].speed * Math.sin(people[i].direction) * time_delta * simulation_speed / 100;
 
     block_lines.forEach((line) => {
-      if (distanceBetweenPointAndSegment(people[i], line) <= people_draw_radius) {
+      if (distanceBetweenPointAndSegment(people[i], line) <= people_draw_radius + 5) {
         let slope_angle = Math.atan((line.second.y - line.first.y) / (line.second.x - line.first.x));
         let new_angle = 2 * slope_angle - people[i].direction;
         people[i].direction = new_angle;
