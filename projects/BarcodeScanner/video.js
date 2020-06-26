@@ -167,7 +167,7 @@ function gotDevices(deviceInfos) {
   for (var i = deviceInfos.length - 1; i >= 0; --i) {
     var deviceInfo = deviceInfos[i];
     var option = document.createElement('option');
-    option.value = deviceInfo.groupId;
+    option.value = deviceInfo.deviceId;
     if (deviceInfo.kind === 'videoinput') {
       option.text = deviceInfo.label || 'camera ' +
         (videoSelect.length + 1);
@@ -188,7 +188,7 @@ function getStream() {
 
   var constraints = {
     video: {
-      groupId: {exact: videoSelect.value},
+      deviceId: {exact: videoSelect.value},
        width: 1280, height: 720
     }
   };
