@@ -1,3 +1,3 @@
 git add .
-git commit -m=barcode
+git commit -m barcode
 git push
