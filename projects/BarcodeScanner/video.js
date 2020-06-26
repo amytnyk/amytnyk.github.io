@@ -164,7 +164,6 @@ navigator.mediaDevices.enumerateDevices()
 videoSelect.onchange = getStream;
 
 function gotDevices(deviceInfos) {
-	alert(JSON.stringify(deviceInfos));
   for (var i = deviceInfos.length - 1; i >= 0; --i) {
     var deviceInfo = deviceInfos[i];
     var option = document.createElement('option');
