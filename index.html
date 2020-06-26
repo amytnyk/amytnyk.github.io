@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Alex Mytnyk website</title>
-    <link rel="stylesheet" href="stylesheets/style.css">
-	<meta http-equiv="refresh" content="0; url=https://amytnyk.github.io/projects/GPA/" />
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li></li>
-      </ul>
-    </nav>
-    
-  </body>
+<body>
+    <!-- Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get a trial license. -->
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@7.4.0-v1/dist/dbr.js" data-productKeys="PRODUCT-KEYS"></script> 
+    <script>
+        let scanner = null;
+        (async()=>{
+            scanner = await Dynamsoft.BarcodeScanner.createInstance();
+            scanner.onFrameRead = results => {console.log(results);};
+            scanner.onUnduplicatedRead = (txt, result) => {alert(txt);};
+            await scanner.show();
+        })();
+    </script> 
+</body>
 </html>
