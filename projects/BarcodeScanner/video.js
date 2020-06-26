@@ -59,9 +59,9 @@ let initCamera = function(videoElement, onBarcodeDetected) {
   
     const constraints = {
       video: {
-        // facingMode: { exact: "environment" },
-        // width: { min: 1280, ideal: 1920 }, height: { min: 720, ideal: 1080 }
-        width: { min: 400, ideal: 1920 }, height: { min: 400, ideal: 1080 }
+        facingMode: { exact: "environment" },
+        width: { min: 1280, ideal: 1920 }, height: { min: 720, ideal: 1080 }
+        // width: { min: 400, ideal: 1920 }, height: { min: 400, ideal: 1080 }
       }
     };
   
