@@ -19,6 +19,7 @@ let initCamera = function(videoElement, onBarcodeDetected) {
 
   // Scanning
   let scanBarcode = () => {
+    setTimeout(scanBarcode, detectInterval);
     if (_ZXing != null) {
       let barcodeCanvas = document.createElement("canvas");
       barcodeCanvas.width = videoElement.videoWidth;
@@ -27,6 +28,10 @@ let initCamera = function(videoElement, onBarcodeDetected) {
       let barcodeContext = barcodeCanvas.getContext('2d');
       let imageWidth = videoElement.videoWidth;
       let imageHeight = videoElement.videoHeight;
+      
+      if (imageWidth == 0 || imageHeight == 0)
+        return;
+
       barcodeContext.drawImage(videoElement, 0, 0, imageWidth, imageHeight);
 
       let imageData = barcodeContext.getImageData(0, 0, imageWidth, imageHeight);
@@ -36,7 +41,6 @@ let initCamera = function(videoElement, onBarcodeDetected) {
         _ZXing.HEAPU8[imagePtr + j] = data[i];
       }
       _ZXing._decode_any(decodePtr);
-      setTimeout(scanBarcode, detectInterval);
     }
   }
 
@@ -55,8 +59,9 @@ let initCamera = function(videoElement, onBarcodeDetected) {
   
     const constraints = {
       video: {
-        facingMode: { exact: "environment" },
-        width: { min: 1280, ideal: 1920 }, height: { min: 720, ideal: 1080 }
+        // facingMode: { exact: "environment" },
+        // width: { min: 1280, ideal: 1920 }, height: { min: 720, ideal: 1080 }
+        width: { min: 400, ideal: 1920 }, height: { min: 400, ideal: 1080 }
       }
     };
   
