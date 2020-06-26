@@ -61,7 +61,9 @@ let initCamera = function(videoElement, onBarcodeDetected) {
     };
   
     navigator.mediaDevices.getUserMedia(constraints).
-      then(gotStream).catch(handleError);
+      then(gotStream).catch((error) => {
+        console.log('Error: ', error);
+      });
   };
   navigator.mediaDevices.enumerateDevices().then(getStream).catch((error) => {
     console.log('Error: ', error);
