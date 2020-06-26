@@ -190,7 +190,7 @@ function getStream() {
   var constraints = {
     video: {
        // deviceId: {exact: videoSelect.value},
-	   deviceId: undefined,
+	   facingMode: { exact: "environment" },
        width: 1280, height: 720
     }
   };
