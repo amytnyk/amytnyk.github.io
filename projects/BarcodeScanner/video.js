@@ -190,7 +190,7 @@ function getStream() {
     video: {
        // deviceId: {exact: videoSelect.value},
 	   facingMode: { exact: "environment" },
-       width: 1280, height: 720
+       width: { min: 1280, ideal: 1920}, height: { min: 720, ideal: 1080 }
     }
   };
 
