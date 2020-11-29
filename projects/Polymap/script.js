@@ -1,8 +1,8 @@
 let canvas;
 let ctx;
 let map = [];
-let height = 30;
-let width = 30;
+let height = 20;
+let width = 20;
 let field_size = 0;
 let isMouseDown = false;
 let current_brush;
