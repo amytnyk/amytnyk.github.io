@@ -1,8 +1,8 @@
 let canvas;
 let ctx;
 let map = [];
-let height = 18;
-let width = 18;
+let height = 20;
+let width = 20;
 let field_size = 0;
 let isMouseDown = false;
 let current_brush;
@@ -188,7 +188,6 @@ function clickedOnField(e) {
     
     if (fieldY >= 0 && fieldY < height && fieldX >= 0 && fieldX < width) {
         map[fieldY][fieldX] = current_brush;
-        drawPart(fieldX, fieldY);
-        drawGrid();
+        drawAll();
     }
 }

@@ -1,0 +1,65 @@
+body {
+  background-color: #1e1e1e;
+  color: #c8c8c8;
+}
+
+#word {
+  margin-top: 30vh;
+  font-size: 10vw;
+  text-align: center;
+  user-select: none;
+}
+
+#ps {
+  font-size: 3vw;
+  text-align: center;
+}
+
+#next_button {
+  border: 6px solid #c8c8c8;
+  border-radius: 2em;
+  font-size: 1.5em;
+  padding: .8em 1.6em;
+  cursor: pointer;
+  position: absolute;
+  bottom: 2vh;
+  margin: auto;
+  left: 0;
+  right: 0;
+  background-color: #1e1e1e;
+  color: #c8c8c8;
+  outline: 0;
+}
+
+#next_button:hover {
+  transition-duration: .5s;
+  background-color: #c8c8c8;
+  color: #1e1e1e;
+}
+
+.vowel {
+  cursor: pointer;
+}
+
+.vowel:hover {
+  border-bottom: 10px solid #c8c8c8;
+  padding-bottom: 10px;
+  transition-duration: .3s;
+}
+
+.points {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 5vh;
+  margin-right: 5vw;
+  font-size: 3em;
+}
+
+#correct_points {
+  color: green;
+}
+
+#incorrect_points {
+  color: red;
+}

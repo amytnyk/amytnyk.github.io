@@ -1,13 +1,15 @@
+'use strict';
+
 let initCamera = function(videoElement, onBarcodeDetected) {
   let _ZXing = null;
   let decodePtr = null;
-  const detectInterval = 30;
+  const detectInterval = 100;
 
   // ZXing init
   let tick = () => {
     if (window.ZXing) {
       _ZXing = ZXing();
-      decodePtr = _ZXing.Runtime.addFunction((ptr, len) => {
+      decodePtr = _ZXing.Runtime.addFunction(ptr, len => {
         let result = new Uint8Array(_ZXing.HEAPU8.buffer, ptr, len);
         onBarcodeDetected(String.fromCharCode.apply(null, result));
       });
@@ -37,7 +39,7 @@ let initCamera = function(videoElement, onBarcodeDetected) {
       let imageData = barcodeContext.getImageData(0, 0, imageWidth, imageHeight);
       let data = imageData.data;
       let imagePtr = _ZXing._resize(imageWidth, imageHeight);
-      for (var i = 0, j = 0; i < data.length; i += 4, j++) {
+      for (let i = 0, j = 0; i < data.length; i += 4, j++) {
         _ZXing.HEAPU8[imagePtr + j] = data[i];
       }
       _ZXing._decode_any(decodePtr);
@@ -46,13 +48,12 @@ let initCamera = function(videoElement, onBarcodeDetected) {
 
   // Camera setup
   let gotStream = (stream) => {
-    window.stream = stream; // make stream available to console
     videoElement.srcObject = stream;
     scanBarcode();
   };
   let getStream = () => {
     if (window.stream) {
-      window.stream.getTracks().forEach((track) => {
+      window.stream.getTracks().forEach(track => {
         track.stop();
       });
     }
@@ -61,7 +62,6 @@ let initCamera = function(videoElement, onBarcodeDetected) {
       video: {
         facingMode: { exact: "environment" },
         width: { min: 1280, ideal: 1920 }, height: { min: 720, ideal: 1080 }
-        // width: { min: 400, ideal: 1920 }, height: { min: 400, ideal: 1080 }
       }
     };
   
@@ -70,7 +70,7 @@ let initCamera = function(videoElement, onBarcodeDetected) {
         console.log('Error: ', error);
       });
   };
-  navigator.mediaDevices.enumerateDevices().then(getStream).catch((error) => {
+  navigator.mediaDevices.enumerateDevices().then(getStream).catch(error => {
     console.log('Error: ', error);
   });
 }
