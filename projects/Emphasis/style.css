@@ -3,6 +3,15 @@ body {
   color: #c8c8c8;
 }
 
+.author {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 5vh;
+  margin-left: 5vw;
+  font-size: 3em;
+}
+
 #word {
   margin-top: 30vh;
   font-size: 10vw;
