@@ -232,36 +232,51 @@ let words = [
   { main: "щИпці" },
   { main: "щодобовИй" },
   { main: "ярмаркОвий" },
-]
+];
 
 let vowels = [ 'а', 'у', 'і', 'е', 'о', 'є', 'я', 'и', 'ю', 'ї' ]
-let selected = false;
+let ID = {
+  word: "word",
+  ps: "ps",
+  next_button: "next_button",
+  correct_points_span: "correct_points",
+  incorrect_points_span: "incorrect_points",
+  game: "game",
+  finish_congrats: "finish_congrats",
+}
+
+let CLASS = {
+  right_vowels: ".vowel.right",
+  false_vowels: ".vowel.false",
+}
+
+let user_answered = false;
 let correct_points = 0;
 let incorrect_points = 0;
 
 function isVowel(char) {
-  return vowels.includes(char);
+  return vowels.includes(char.toLowerCase());
 }
 
 function enableButton(enable) {
-  document.getElementById("next_button").style.display = enable ? "block" : "none";
+  document.getElementById(ID.next_button).style.display = enable ? "block" : "none";
 }
 
 function update_scoreboard() {
-  document.getElementById("correct_points").innerText = correct_points;
-  document.getElementById("incorrect_points").innerText = incorrect_points;
+  document.getElementById(ID.correct_points_span).innerText = correct_points;
+  document.getElementById(ID.incorrect_points_span).innerText = incorrect_points;
 }
 
-function right_selected() {
-  if (!selected) {
+function right_vowel_selected() {
+  if (!user_answered) {
     correct_points++;
     next_step();
   }
 }
 
-function false_selected(element) {
+function false_vowel_selected(element) {
   return () => { 
-    if (!selected) {
+    if (!user_answered) {
       element.style = "color: red;";
       incorrect_points++;
       next_step();
@@ -284,36 +299,50 @@ function next_button_clicked() {
   new_word();
 }
 
+function isUppercase(c) {
+  return c.toLowerCase() != c;
+}
+
+function finish_game() {
+  document.getElementById(ID.game).style.display = "none";
+  document.getElementById(ID.finish_congrats).style.display = "block";
+}
+
 function new_word() {
-  let index = Math.trunc(Math.random() * words.length);
-  let html = "";
+  if (words.length == 0) {
+    finish_game();
+  } else {
+    let index = Math.trunc(Math.random() * words.length);
+    let html = "";
 
-  let main_part = words[index].main;
-  let ps = words[index].ps;
+    let main_part = words[index].main;
+    let ps = words[index].ps;
 
-  for (let i = 0;i < main_part.length;i++) {
-    span_class = (isVowel(main_part[i].toLowerCase())) ? "vowel" : "not_vowel";
-    span_class2 = main_part[i].toLowerCase() != main_part[i] ? "right" : "false";
-    html += `<span class="${span_class} ${span_class2}">${main_part[i].toLowerCase()}</span>`;
+    for (let i = 0;i < main_part.length;i++) {
+      span_class = isVowel(main_part[i]) ? "vowel" : "not_vowel";
+      span_class2 = isUppercase(main_part[i]) ? "right" : "false";
+      html += `<span class="${span_class} ${span_class2}">${main_part[i].toLowerCase()}</span>`;
+    }
+
+    if (ps == undefined)
+      document.getElementById(ID.ps).innerHTML = "";
+    else
+      document.getElementById(ID.ps).innerHTML = ps;
+
+    document.getElementById(ID.word).innerHTML = html;
+
+    document.querySelectorAll(CLASS.right_vowels).forEach((element, index, array) => {
+      array[index].onclick = right_vowel_selected;
+    });
+    document.querySelectorAll(CLASS.false_vowels).forEach((element, index, array) => {
+      array[index].onclick = false_vowel_selected(array[index]);
+    });
+
+    document.getElementById(ID.next_button).onclick = next_button_clicked;
+
+    user_answered = false;
+    words.splice(index, 1);
   }
-
-  if (ps == undefined)
-    document.getElementById("ps").innerHTML = "";
-  else
-    document.getElementById("ps").innerHTML = ps;
-  
-  document.getElementById("word").innerHTML = html;
-
-  document.querySelectorAll(".vowel.right").forEach((element, index, array) => {
-    array[index].onclick = right_selected;
-  });
-  document.querySelectorAll(".vowel.false").forEach((element, index, array) => {
-    array[index].onclick = false_selected(array[index]);
-  });
-
-  document.getElementById("next_button").onclick = next_button_clicked;
-
-  selected = false;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
