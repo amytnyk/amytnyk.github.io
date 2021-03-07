@@ -291,7 +291,7 @@ function next_step() {
   
   enableButton(true);
   update_scoreboard();
-  selected = true;
+  user_answered = true;
 }
 
 function next_button_clicked() {
