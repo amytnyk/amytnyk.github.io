@@ -253,6 +253,11 @@ let CLASS = {
 let user_answered = false;
 let correct_points = 0;
 let incorrect_points = 0;
+let index;
+
+function getRandomIndex() {
+  return Math.trunc(Math.random() * words.length);
+}
 
 function isVowel(char) {
   return vowels.includes(char.toLowerCase());
@@ -270,6 +275,7 @@ function update_scoreboard() {
 function right_vowel_selected() {
   if (!user_answered) {
     correct_points++;
+    words.splice(index, 1);
     next_step();
   }
 }
@@ -279,6 +285,7 @@ function false_vowel_selected(element) {
     if (!user_answered) {
       element.style = "color: red;";
       incorrect_points++;
+      swap(words[index], words[getRandomIndex()]);
       next_step();
     }
   };
@@ -312,7 +319,7 @@ function new_word() {
   if (words.length == 0) {
     finish_game();
   } else {
-    let index = Math.trunc(Math.random() * words.length);
+    index = getRandomIndex();
     let html = "";
 
     let main_part = words[index].main;
@@ -341,7 +348,6 @@ function new_word() {
     document.getElementById(ID.next_button).onclick = next_button_clicked;
 
     user_answered = false;
-    words.splice(index, 1);
   }
 }
 
