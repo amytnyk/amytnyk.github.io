@@ -322,8 +322,8 @@ function new_word() {
     word_index = getRandomIndex();
     let html = "";
 
-    let main_part = words[index].main;
-    let ps = words[index].ps;
+    let main_part = words[word_index].main;
+    let ps = words[word_index].ps;
 
     for (let i = 0;i < main_part.length;i++) {
       span_class = isVowel(main_part[i]) ? "vowel" : "not_vowel";
