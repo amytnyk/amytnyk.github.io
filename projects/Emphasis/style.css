@@ -39,6 +39,7 @@ body {
   background-color: #1e1e1e;
   color: #c8c8c8;
   outline: 0;
+  user-select: none;
 }
 
 #next_button:hover {
