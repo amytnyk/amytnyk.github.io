@@ -285,10 +285,6 @@ function false_vowel_selected(element) {
     if (!user_answered) {
       element.style = "color: red;";
       incorrect_points++;
-      let t = words[word_index];
-      let i = getRandomIndex();
-      words[i] = t;
-      words[word_index] = words[i];
       next_step();
     }
   };
