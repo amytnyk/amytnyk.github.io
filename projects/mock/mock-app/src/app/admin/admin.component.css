@@ -1,0 +1,11 @@
+h1 {
+  padding: 20px;
+  margin: 0;
+}
+hr {
+  margin: 0;
+  height: 6px;
+  width: 100%;
+  border: none;
+  background-color: rgb(20, 20, 20);
+}

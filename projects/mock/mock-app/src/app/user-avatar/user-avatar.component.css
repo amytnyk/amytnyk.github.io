@@ -1,0 +1,14 @@
+.avatar_img {
+  border: none;
+  height: auto;
+  width: 40px;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.sign_out_btn {
+  color: red;
+  font-weight: 700;
+}

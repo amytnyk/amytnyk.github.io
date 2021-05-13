@@ -3,26 +3,37 @@
   <head>
     <meta charset="utf-8">
     <title>Infection simulator</title>
-    <script src="vector.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="simulator.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <canvas id="environment" width="300" height="300"></canvas>
-    <div id="controller">
-      <span class="label">People count: </span><span class="info_span" id="people_count_span">100</span><br/><input type="range" min="10" max="1000" value="100" class="slider" id="people_count_slider" /><br/>
+    <div id="info_panel">
+      <div id="controllers">
+        <template id="controller">
+          <span class="label">{{NAME}}: </span>
+          <span class="value">{{CURRENT_VALUE}}</span>
+          <br/>
+          <input type="range" min="{{MIN}}" max="{{MAX}}" value="{{DEFAULT_VALUE}}" class="slider" />
+          <br/>
+        </template>
+      </div>
+      <!-- <span class="label">People count: </span><span class="info_span" id="people_count_span">100</span><br/><input type="range" min="10" max="1000" value="100" class="slider" id="people_count_slider" /><br/>
       <span class="label">People size: </span><span class="info_span" id="people_size_span">100</span><br/><input type="range" min="2" max="15" value="5" class="slider" id="people_size_slider" /><br/>
       <span class="label">Speed: </span><span class="info_span" id="speed_span">100</span><br/><input type="range" min="0" max="5" step="0.1" value="1" class="slider" id="speed_slider" /><br/>
       <span class="label">Death rate: </span><span class="info_span" id="death_rate_span">0.5</span><br/><input type="range" min="0" max="1" step="0.01" value="0.5" class="slider" id="death_rate_slider" /><br/>
       <span class="label">Max incubation period duration: </span><span class="info_span" id="incubation_period_span">14</span><br/><input type="range" min="0" max="30" step="1" value="14" class="slider" id="incubation_period_slider" /><br/>
-      <span class="label">Max infection period duration: </span><span class="info_span" id="infection_period_span">30</span><br/><input type="range" min="0" max="100" step="1" value="30" class="slider" id="infection_period_slider" /><br/>
+      <span class="label">Max infection period duration: </span><span class="info_span" id="infection_period_span">30</span><br/><input type="range" min="0" max="100" step="1" value="30" class="slider" id="infection_period_slider" /><br/> -->
       <button id="restart">Restart simulation</button><br/><br/><br/>
-      <span class="info_label confirmed_cases_label">Confirmed cases: </span><span class="info_count_label" id="confirmed_cases_count_label"></span><br/>
+      <!-- <span class="info_label confirmed_cases_label">Confirmed cases: </span><span class="info_count_label" id="confirmed_cases_count_label"></span><br/>
       <span class="info_label deaths_label">Death cases: </span><span class="info_count_label" id="deaths_count_label"></span><br/>
       <span class="info_label recovered_label">Recovered: </span><span class="info_count_label" id="recovered_count_label"></span><br/>
       <span class="info_label incubation_period_label">Incubation period: </span><span class="info_count_label" id="incubation_count_label"></span><br/>
       <span class="info_label susceptible_label">Susceptible: </span><span class="info_count_label" id="susceptible_count_label"></span><br/>
-      <span class="info_label active_label">Active cases: </span><span class="info_count_label" id="active_count_label"></span><br/>
+      <span class="info_label active_label">Active cases: </span><span class="info_count_label" id="active_count_label"></span><br/> -->
+      <div id="info">
+
+      </div>
     </div>
   </body>
 </html>

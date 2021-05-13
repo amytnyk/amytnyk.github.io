@@ -1,0 +1,6 @@
+<img class="avatar_img" [src]="avatarUrl" (click)="onAvatarClicked()" />
+<div #trigger="matMenuTrigger" [matMenuTriggerFor]="menu"></div>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Profile</button>
+  <button class="sign_out_btn" mat-menu-item (click)="onSignOutClicked()">Sign out</button>
+</mat-menu>

@@ -1,0 +1,14 @@
+header {
+  padding-left: 1rem;
+  background-color: rgb(20, 20, 20);
+  border-bottom: rgb(25, 25, 25) solid 6px;
+  width: auto;
+  display: flex;
+}
+.logo_img {
+  float: right;
+  height: 30px;
+  padding: 20px;
+  margin: auto;
+  width: auto;
+}

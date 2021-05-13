@@ -1,0 +1,10 @@
+<div class="wrapper" *ngIf="users$ | async; let users; else loading"> <!---->
+  <table>
+    <tr><th>UID</th><th>Name</th></tr>
+    <tr *ngFor="let user of users">
+      <td>{{user.uid}}</td>
+      <td>{{user.displayName}}</td>
+    </tr>
+  </table>
+</div>
+<ng-template #loading></ng-template>

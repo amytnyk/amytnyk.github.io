@@ -1,0 +1,19 @@
+amytnyk.github.io/projects/mock/data.json
+{ 
+  tests: [
+    {
+      id: 0;
+      name: "Фізика",
+      full_name: "ЗНО з фізики",
+      tasks: [
+        {
+          type: "abcd", // abcd, abcde, 
+          statement: "Камінь лежить нерухомо на гірському схилі. Куди напрямлена сила, з якою він діє на схил?",
+          answers: [
+            ""
+          ],
+        }
+      ]
+    }
+  ]
+}

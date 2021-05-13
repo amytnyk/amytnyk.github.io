@@ -12,12 +12,16 @@ canvas {
   position: absolute;
 }
 
-#controller {
+#info_panel {
   width: 25%;
   position: absolute;
   right: 0;
   height: 100%;
   background-color: #272727;
+}
+
+#controllers {
+  width: 100%;
 }
 
 #restart {
@@ -30,7 +34,7 @@ canvas {
   color: #ffffff;
 }
 
-.label, .info_span {
+.label, .value {
   color: white;
 }
 

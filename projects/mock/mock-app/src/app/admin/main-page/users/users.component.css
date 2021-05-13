@@ -1,0 +1,14 @@
+table {
+}
+
+.wrapper {
+  padding: 20px;
+  width: calc(100% - 40px);
+  max-height: calc(100% - 40px);
+  overflow-y: scroll;
+}
+
+th {
+  text-decoration: none;
+  font: 700;
+}
