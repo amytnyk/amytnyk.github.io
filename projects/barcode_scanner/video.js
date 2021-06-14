@@ -67,7 +67,7 @@ let initCamera = function(videoElement, onBarcodeDetected) {
     const constraints = {
       video: {
         facingMode: { exact: window.mobileCheck() ? "environment" : "user" },
-        width: { min: 1280, ideal: window.innerWidth }, height: { min: 720, ideal: window.innerHeight }
+        width: { min: 1280, ideal: window.screen.width * window.devicePixelRatio }, height: { min: 720, ideal: window.screen.height * window.devicePixelRatio }
       }
     };
   
